@@ -91,6 +91,7 @@ from .decompose_logit_pass import DecomposeLogitPass  # noqa
 from .decompose_lstm_pass import DecomposeLstmPass  # noqa
 from .decompose_masked_fill_pass import DecomposeMaskedFillPass  # noqa
 from .decompose_matmul import DecomposeMatmulPass  # noqa
+from .decompose_max_pool1d_pass import DecomposeMaxPool1dPass  # noqa
 from .decompose_maxpool2d_with_dilation_pass import DecomposeMaxPool2dPass  # noqa
 from .decompose_meandim_pass import DecomposeMeanDimPass  # noqa
 from .decompose_ne_pass import DecomposeNotEqualPass  # noqa
@@ -117,6 +118,7 @@ from .decompose_sqrt_pass import DecomposeSqrtPass  # noqa
 from .decompose_strided_slice_copy_pass import DecomposeStridedSliceCopyPass  # noqa
 from .decompose_sum_pass import DecomposeSumPass  # noqa
 from .decompose_tan_pass import DecomposeTanPass  # noqa
+from .decompose_topk_pass import DecomposeTopKPass  # noqa
 from .decompose_tosa_unsupported_clamp_pass import (  # noqa
     DecomposeTOSAUnsupportedClampPass,
 )
@@ -187,6 +189,7 @@ from .normalize_max_pool2d_input_rank_pass import (  # noqa
     NormalizeMaxPool2dInputRankPass,
 )
 from .normalize_while_initial_args_pass import NormalizeWhileInitialArgsPass  # noqa
+from .prepare_gather_indices_pass import PrepareGatherIndicesPass  # noqa
 from .promote_bool_operands_pass import PromoteBoolOperandsPass  # noqa
 from .propagate_view_copy_permute_pass import (  # noqa
     PropagateViewCopyPermuteDownPass,
