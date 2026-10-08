@@ -1249,7 +1249,7 @@ void WebGPUGraph::build(
         const passes::SwiGluFusion& fusion = swiglu_fusions[anchor_it->second];
         passes::add_silu_mul_fused_dispatch(
             *this,
-            fusion.common_input_id,
+            {fusion.common_input_id},
             fusion.gate_id,
             fusion.up_id,
             fusion.out_id);

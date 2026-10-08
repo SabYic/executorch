@@ -299,7 +299,7 @@ void detect_swiglu_fusions(
 
 void add_silu_mul_fused_dispatch(
     WebGPUGraph& graph,
-    int common_input_id,
+    const std::vector<int>& resize_trigger_ids,
     int gate_id,
     int up_id,
     int out_id) {
@@ -326,13 +326,15 @@ void add_silu_mul_fused_dispatch(
   descriptor.grid = {workgroup_count.x, workgroup_count.y};
   const size_t dispatch_idx = graph.add_compute_dispatch(descriptor);
 
-  graph.add_tensor_resize_hook(
-      common_input_id,
-      [gate_id, up_id, out_id, wg_size, dispatch_idx, params_buffer](
-          WebGPUGraph& g) {
-        resize_silu_mul_fused(
-            g, gate_id, up_id, out_id, wg_size, dispatch_idx, params_buffer);
-      });
+  for (int trigger_id : resize_trigger_ids) {
+    graph.add_tensor_resize_hook(
+        trigger_id,
+        [gate_id, up_id, out_id, wg_size, dispatch_idx, params_buffer](
+            WebGPUGraph& g) {
+          resize_silu_mul_fused(
+              g, gate_id, up_id, out_id, wg_size, dispatch_idx, params_buffer);
+        });
+  }
 }
 
 } // namespace executorch::backends::webgpu::passes

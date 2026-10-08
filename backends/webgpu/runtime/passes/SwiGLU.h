@@ -47,11 +47,11 @@ void detect_swiglu_fusions(
     std::unordered_set<unsigned>& skipped_ops,
     std::unordered_set<unsigned>& claimed_ops);
 
-// Emits the single fused silu_mul_fused dispatch for a matched pattern and
-// registers its dynamic-resize hook.
+// Emits a single silu_mul_fused dispatch and registers its dynamic-resize hook
+// on each of resize_trigger_ids.
 void add_silu_mul_fused_dispatch(
     WebGPUGraph& graph,
-    int common_input_id,
+    const std::vector<int>& resize_trigger_ids,
     int gate_id,
     int up_id,
     int out_id);
